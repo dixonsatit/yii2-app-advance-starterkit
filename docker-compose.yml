@@ -17,7 +17,6 @@ services:
       context: ./docker/php
       args:
         - GITHUB_TOKEN=4bcb0723438da7cf1e8231fda18647a5b5ab0d9b    
-    working_dir: /app
     restart: always
     volumes:
       - ./:/app
@@ -25,24 +24,23 @@ services:
       - 9000
     networks:
       - backend
-    environment:
-      XDEBUG_CONFIG: "idekey=PHPSTORM remote_enable=On remote_connect_back=On"
+    depends_on:
+      - proxy        
 
   app-frontend:
     build: 
       context: ./docker/php
       args:
         - GITHUB_TOKEN=4bcb0723438da7cf1e8231fda18647a5b5ab0d9b    
-    working_dir: /app
     restart: always
     volumes_from:
       - app-backend
+    depends_on:
+      - app-backend        
     expose:
       - 9000
     networks:
       - backend
-    environment:
-      XDEBUG_CONFIG: "idekey=PHPSTORM remote_enable=On remote_connect_back=On"
 
   app-storage:
     build: 
@@ -53,12 +51,12 @@ services:
     restart: always
     volumes_from:
       - app-backend
+    depends_on:
+      - app-backend      
     expose:
       - 9000
     networks:
       - backend
-    environment:
-      XDEBUG_CONFIG: "idekey=PHPSTORM remote_enable=On remote_connect_back=On"
 
   frontend:
     image: nginx:1.12-alpine
@@ -67,6 +65,8 @@ services:
       - "7001:80"
     volumes_from:
       - app-backend
+    depends_on:
+      - app-backend        
     volumes:
       - ./docker/nginx/conf.d/frontend.conf:/etc/nginx/conf.d/frontend.conf
     networks:
@@ -79,6 +79,8 @@ services:
       - "7002:80"
     volumes_from:
       - app-backend  
+    depends_on:
+      - app-backend        
     volumes:
       - ./docker/nginx/conf.d/backend.conf:/etc/nginx/conf.d/backend.conf
     networks:
@@ -91,6 +93,8 @@ services:
       - "7003:80"
     volumes_from:
       - app-backend 
+    depends_on:
+      - app-backend  
     volumes:
       - ./docker/nginx/conf.d/storage.conf:/etc/nginx/conf.d/storage.conf
     networks:

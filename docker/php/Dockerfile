@@ -4,6 +4,7 @@ ARG GITHUB_TOKEN
 
 # Install modules
 RUN apt-get update && apt-get install -y \
+        git \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
@@ -30,6 +31,9 @@ RUN apt-get purge -y g++ \
     && rm -rf /tmp/*
 
 RUN usermod -u 1000 www-data
+
+WORKDIR /app
+VOLUME /app
 
 EXPOSE 9000
 
