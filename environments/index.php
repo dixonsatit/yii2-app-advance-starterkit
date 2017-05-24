@@ -36,6 +36,10 @@ return [
             'backend/web/assets',
             'frontend/runtime',
             'frontend/web/assets',
+            'storage/runtime',
+            'storage/web/assets',
+            'api/runtime',
+            'api/web/assets',
         ],
         'setExecutable' => [
             'yii',
@@ -44,7 +48,15 @@ return [
         'setCookieValidationKey' => [
             'backend/config/main-local.php',
             'frontend/config/main-local.php',
+            'storage/config/main-local.php',
+            'api/config/main-local.php',
         ],
+        'createSymlink' => [
+            'backend/web/source' => 'storage/web/source',
+            'frontend/web/source' => 'storage/web/source',
+            'backend/web/source' => 'storage/web/source',
+            'api/web/source' => 'storage/web/source'
+        ]
     ],
     'Production' => [
         'path' => 'prod',
@@ -53,6 +65,10 @@ return [
             'backend/web/assets',
             'frontend/runtime',
             'frontend/web/assets',
+            'storage/runtime',
+            'storage/web/assets',
+            'api/runtime',
+            'api/web/assets',            
         ],
         'setExecutable' => [
             'yii',
@@ -60,6 +76,8 @@ return [
         'setCookieValidationKey' => [
             'backend/config/main-local.php',
             'frontend/config/main-local.php',
+            'storage/config/main-local.php',
+            'api/config/main-local.php',            
         ],
     ],
 ];
