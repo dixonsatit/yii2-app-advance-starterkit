@@ -14,11 +14,23 @@ if (!YII_ENV_TEST) {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
+        'allowedIPs'=>['*']
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
+        'allowedIPs'=>['*'],
+        'generators' => [
+            'crud' => [
+                'class' => yii\gii\generators\crud\Generator::class,
+                'templates' => [
+                    'yii2-starter-kit' => Yii::getAlias('@backend/views/_gii/templates')
+                ],
+                'template' => 'yii2-starter-kit',
+                'messageCategory' => 'backend'
+            ]
+        ]        
     ];
 }
 
