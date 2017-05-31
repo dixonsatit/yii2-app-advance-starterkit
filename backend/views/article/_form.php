@@ -15,17 +15,14 @@ use yii\bootstrap\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?php echo $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+<div class="row">
+    <div class="col-md-9">
+
+<?php echo $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?php echo $form->field($model, 'slug')
         ->hint(Yii::t('backend', 'If you\'ll leave this field empty, slug will be generated automatically'))
         ->textInput(['maxlength' => true]) ?>
-
-    <?php echo $form->field($model, 'category_id')->dropDownList(\yii\helpers\ArrayHelper::map(
-            $categories,
-            'id',
-            'title'
-        ), ['prompt'=>'']) ?>
 
     <?php echo $form->field($model, 'body')->widget(
         \yii\imperavi\Widget::className(),
@@ -41,16 +38,7 @@ use yii\bootstrap\ActiveForm;
             ]
         ]
     ) ?>
-
-    <?php echo $form->field($model, 'thumbnail')->widget(
-        Upload::className(),
-        [
-            'url' => ['/file-storage/upload'],
-            'maxFileSize' => 5000000, // 5 MiB
-        ]);
-    ?>
-
-    <?php echo $form->field($model, 'attachments')->widget(
+<?php echo $form->field($model, 'attachments')->widget(
         Upload::className(),
         [
             'url' => ['/file-storage/upload'],
@@ -59,24 +47,42 @@ use yii\bootstrap\ActiveForm;
             'maxNumberOfFiles' => 10
         ]);
     ?>
+    </div>
+    <div class="col-md-3">
 
-    <?php echo $form->field($model, 'view')->textInput(['maxlength' => true]) ?>
-
-    <?php echo $form->field($model, 'status')->checkbox() ?>
-
-    <?php echo $form->field($model, 'published_at')->widget(
-        DateTimeWidget::className(),
-        [
-            'phpDatetimeFormat' => 'yyyy-MM-dd\'T\'HH:mm:ssZZZZZ'
-        ]
-    ) ?>
-
-    <div class="form-group">
+        <div class="form-group">
         <?php echo Html::submitButton(
             $model->isNewRecord ? Yii::t('backend', 'Create') : Yii::t('backend', 'Update'),
-            ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            ['class' => $model->isNewRecord ? 'btn btn-success btn-block' : 'btn btn-primary btn-block']) ?>
     </div>
+        <?php echo $form->field($model, 'status')->checkbox() ?>
+        <?php echo $form->field($model, 'category_id')->dropDownList(\yii\helpers\ArrayHelper::map(
+            $categories,
+            'id',
+            'title'
+        ), ['prompt'=>'']) ?>
+         
+         <?php echo $form->field($model, 'view')->textInput(['maxlength' => true]) ?>
+         <?php echo $form->field($model, 'published_at')->widget(
+            DateTimeWidget::className(),
+            [
+                'phpDatetimeFormat' => 'yyyy-MM-dd\'T\'HH:mm:ssZZZZZ'
+            ]
+         ) ?>
 
+   
+    <?php echo $form->field($model, 'thumbnail')->widget(
+        Upload::className(),
+        [
+            'url' => ['/file-storage/upload'],
+            'maxFileSize' => 5000000, // 5 MiB
+        ]);
+    ?>
+
+    </div>
+</div>
+
+     
     <?php ActiveForm::end(); ?>
 
 </div>
