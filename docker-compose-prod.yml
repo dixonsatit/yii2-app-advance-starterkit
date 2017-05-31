@@ -30,8 +30,9 @@ services:
 
   app-frontend:
     build: 
+    build: 
       context: ./docker/php
-      dockerfile: Dockerfile.prod      
+      dockerfile: Dockerfile.prod    
       args:
         - GITHUB_TOKEN=4bcb0723438da7cf1e8231fda18647a5b5ab0d9b    
     restart: always
