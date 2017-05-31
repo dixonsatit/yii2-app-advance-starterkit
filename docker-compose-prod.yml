@@ -105,8 +105,9 @@ services:
       - backend           
 
   proxy:
-    build: 
+    build:             
       context: ./docker/openresty
+      dockerfile: Dockerfile.prod   
     ports:
       - 80:80
     restart: always
