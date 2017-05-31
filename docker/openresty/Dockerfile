@@ -6,7 +6,7 @@ FROM openresty/openresty:alpine-fat
 MAINTAINER Sathit Seethaphon <dixonsatit@gmail.com>
 
 RUN apk upgrade --update && apk --no-cache add git \
-&& rm -rf /var/cache/apk/*
+&& rm -rf /var/cache/apk/* 
 
 # RUN /usr/local/openresty/luajit/bin/luarocks install lua-resty-mysql 
 
