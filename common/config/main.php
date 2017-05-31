@@ -3,8 +3,11 @@ return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'sourceLanguage'=>'en-US',
     'language'=>'en-US',
+    'as locale' => [
+        'class' => 'common\behaviors\LocaleBehavior',
+        'enablePreferredLanguage' => true
+    ],    
     'components' => [
-
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
             'itemTable' => '{{%rbac_auth_item}}',
