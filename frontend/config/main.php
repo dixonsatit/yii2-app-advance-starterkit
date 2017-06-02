@@ -73,6 +73,10 @@ return [
         ],
         'urlManager' => require(__DIR__.'/_urlManager.php')
     ],
+    'as locale' => [
+        'class' => 'common\behaviors\LocaleBehavior',
+        'enablePreferredLanguage' => true
+    ],   
     'params' => $params,
     
 ];

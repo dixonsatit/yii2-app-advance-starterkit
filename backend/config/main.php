@@ -98,5 +98,9 @@ return [
             ]
         ]
     ],    
+    'as locale' => [
+        'class' => 'common\behaviors\LocaleBehavior',
+        'enablePreferredLanguage' => true
+    ],       
     'params' => $params,
 ];

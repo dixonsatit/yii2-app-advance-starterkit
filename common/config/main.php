@@ -2,11 +2,7 @@
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'sourceLanguage'=>'en-US',
-    'language'=>'en-US',
-    'as locale' => [
-        'class' => 'common\behaviors\LocaleBehavior',
-        'enablePreferredLanguage' => true
-    ],    
+    'language'=>'en-US', 
     'components' => [
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
