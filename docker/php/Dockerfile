@@ -4,7 +4,7 @@ ARG GITHUB_TOKEN
 
 # Install modules
 RUN apt-get update && apt-get install -y \
-        git \
+        git g++ \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
         libicu-dev \
         --no-install-recommends
 
-RUN docker-php-ext-install mcrypt zip intl mbstring pdo_mysql exif \
+RUN docker-php-ext-install  mcrypt zip intl mbstring json zip bcmath pdo_mysql exif \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install gd
 
